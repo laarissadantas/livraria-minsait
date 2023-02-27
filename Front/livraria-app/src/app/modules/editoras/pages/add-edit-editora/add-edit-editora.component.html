@@ -9,6 +9,7 @@
           type="text"
           name="nome"
           formControlName="nome"
+          maxlength="150"
           required
         />
         <mat-error *ngIf="form.get('nome')?.invalid">

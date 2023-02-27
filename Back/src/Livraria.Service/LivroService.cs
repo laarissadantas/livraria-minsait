@@ -41,7 +41,8 @@ namespace Livraria.Service
             {
                 var livro = await _livroRepository.GetLivroByIdAsync(model.Id);
                 if (livro == null) return null;
-
+                
+                _livroRepository.RemoveAutoresLivros(livro);
                 _livroRepository.Update(model);
                 if (await _livroRepository.SaveChangesAsync())
                 {

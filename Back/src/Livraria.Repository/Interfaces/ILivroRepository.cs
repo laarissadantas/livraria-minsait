@@ -8,5 +8,6 @@ namespace Livraria.Repository.Interfaces
     {
         Task<IEnumerable<Livro>> GetAllLivrosAsync();
         Task<Livro> GetLivroByIdAsync(int id);
+        void RemoveAutoresLivros(Livro livro);
     }
 }

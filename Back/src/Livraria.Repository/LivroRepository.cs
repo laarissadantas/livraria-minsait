@@ -4,6 +4,7 @@ using Livraria.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace Livraria.Repository
@@ -37,6 +38,15 @@ namespace Livraria.Repository
                 .Where(l => l.Id == id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
+        }
+
+        public void RemoveAutoresLivros(Livro livro)
+        {
+            if (livro.AutoresLivros.Any())
+            {
+                _context.RemoveRange(livro.AutoresLivros);
+                _context.Entry(livro).State = EntityState.Detached;
+            }
         }
     }
 }
