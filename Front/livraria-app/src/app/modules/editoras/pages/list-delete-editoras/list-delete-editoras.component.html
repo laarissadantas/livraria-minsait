@@ -1,0 +1,34 @@
+<div class="vertical-end">
+  <button mat-raised-button color="primary" (click)="addEditEditora()">
+    <mat-icon>add</mat-icon> Adicionar editora
+  </button>
+</div>
+
+<div *ngIf="dataSource.length && !isLoading; else elseDataSource">
+  <table mat-table [dataSource]="dataSource" class="w-100">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let editora">{{ editora.nome }}</td>
+    </ng-container>
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let editora" class="w-10">
+        <div class="actions">
+          <mat-icon class="cursor-pointer" (click)="addEditEditora(editora)">
+            edit
+          </mat-icon>
+          <mat-icon class="cursor-pointer" (click)="deleteEditora(editora.id)">
+            delete
+          </mat-icon>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let editora; columns: columns"></tr>
+  </table>
+</div>
+
+<ng-template #elseDataSource>
+  <div *ngIf="!isLoading" class="flex-align-center"><mat-icon>warning</mat-icon> Nada encontrado</div>
+</ng-template>

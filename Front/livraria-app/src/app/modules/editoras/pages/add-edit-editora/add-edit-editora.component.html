@@ -1,0 +1,35 @@
+<div class="d-flex h-100">
+  <h1 mat-dialog-title>{{ editora ? "Editar" : "Adicionar" }} editora</h1>
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="form">
+      <mat-form-field class="w-100">
+        <mat-label for="nome">Nome</mat-label>
+        <input
+          matInput
+          type="text"
+          name="nome"
+          formControlName="nome"
+          required
+        />
+        <mat-error *ngIf="form.get('nome')?.invalid">
+          Para {{ this.editora ? "salvar" : "adicionar" }} é necessário
+          preencher o campo
+        </mat-error>
+        <mat-hint *ngIf="verifySameNome()">
+          Para salvar é necessário inserir um valor diferente do atual
+        </mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="actions">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid || verifySameNome()"
+      (click)="saveEditora()"
+    >
+      {{ editora ? "Salvar" : "Adicionar" }}
+    </button>
+    <button mat-raised-button color="warn" matDialogClose>Cancelar</button>
+  </mat-dialog-actions>
+</div>

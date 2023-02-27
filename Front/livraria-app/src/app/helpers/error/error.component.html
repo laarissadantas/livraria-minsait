@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>Erro!</h1>
+  <mat-dialog-content class="dialog-content">
+    <div *ngIf="error.error.errors">
+      {{ error.error.errors | json }}
+    </div>
+    <div *ngIf="error.error">
+      {{ error.error | json }}
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="vertical-end">
+    <button mat-raised-button color="primary" mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+</div>
